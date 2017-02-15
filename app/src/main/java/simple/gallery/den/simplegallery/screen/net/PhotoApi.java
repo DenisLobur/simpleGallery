@@ -9,5 +9,5 @@ public interface PhotoApi {
 
     @GET("v1/photos")
     Observable<Object> getWeatherByCityname(@Query("feature") String feature,
-                                               @Query("consumer_key") String consumer_key);
+                                               @Query("consumer_key") String consumerKey);
 }
