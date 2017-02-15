@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import simple.gallery.den.simplegallery.screen.inject.scopes.ApplicationScope;
 import simple.gallery.den.simplegallery.screen.net.PhotoApi;
 
-
+@ApplicationScope
 @Module(includes = NetworkModule.class)
 public class RestApiModule {
     private static final String BASE_URL = "https://api.500px.com/";
