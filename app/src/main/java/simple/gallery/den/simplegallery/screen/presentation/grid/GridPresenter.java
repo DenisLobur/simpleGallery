@@ -29,7 +29,7 @@ public class GridPresenter extends BaseMainPresenter<GridView> {
         photoApi.getPhotos("popular", Constants.CONSUMER_KEY, 1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(scheduler)
-                .map(it -> Log.d("result", it.toString()))
+                //.map(it -> Log.d("result", it.toString()))
                 .subscribe(stringResult -> {
                     Log.d("result", stringResult.toString());
                 }, throwable -> {
