@@ -25,22 +25,32 @@ public class GridPresenter extends BaseMainPresenter<GridView> {
         this.photoApi = photoApi;
     }
 
-    public void fetchPhotos() {
+    /*public void fetchPhotos() {
         photoApi.getPhotos("popular", Constants.CONSUMER_KEY, 1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(scheduler)
                 //.map(it -> Log.d("result", it.toString()))
                 .subscribe(stringResult -> {
                     Log.d("result", stringResult.toString());
+                    getView().fillGrid(stringResult);
                 }, throwable -> {
                     Throwable th = throwable;
                 });
 
-    }
+    }*/
 
     @Override
     public void onStart() {
-
+        photoApi.getPhotos("popular", Constants.CONSUMER_KEY, 1)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(scheduler)
+                //.map(it -> Log.d("result", it.toString()))
+                .subscribe(stringResult -> {
+                    Log.d("result", stringResult.toString());
+                    getView().fillGrid(stringResult);
+                }, throwable -> {
+                    Throwable th = throwable;
+                });
     }
 
     @Override
