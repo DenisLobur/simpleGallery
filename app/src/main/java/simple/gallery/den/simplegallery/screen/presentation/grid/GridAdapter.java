@@ -20,15 +20,20 @@ import simple.gallery.den.simplegallery.screen.model.Photo;
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     private List<Photo> photoList;
     private Context context;
+    private View.OnClickListener itemClickListener;
 
     public GridAdapter(List<Photo> photoList, Context context) {
         this.photoList = photoList;
         this.context = context;
     }
 
+    public void setItemClickListener(View.OnClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_cell, parent, false);
         return new ViewHolder(view);
     }
 
@@ -43,16 +48,16 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         return photoList != null ? photoList.size() : 0;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.img)
         ImageView image;
         @BindView(R.id.title)
         TextView title;
 
-
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(itemClickListener);
         }
     }
 }

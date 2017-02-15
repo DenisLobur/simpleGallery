@@ -10,7 +10,7 @@ import simple.gallery.den.simplegallery.screen.presentation.grid.GridFragment;
 @ApplicationScope
 @Component(modules = {ContextModule.class, RestApiModule.class})
 public interface MainActivityComponent {
-    void inject(GridFragment chatsFragment);
+    void inject(GridFragment gridFragment);
 
-    void inject(DetailFragment messagesFragment);
+    void inject(DetailFragment detailFragment);
 }

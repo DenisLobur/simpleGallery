@@ -4,4 +4,6 @@ import simple.gallery.den.simplegallery.screen.main.BaseMainView;
 
 
 public interface DetailView extends BaseMainView {
+
+    void showPhoto();
 }

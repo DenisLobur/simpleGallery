@@ -11,6 +11,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import simple.gallery.den.simplegallery.screen.common.Constants;
 import simple.gallery.den.simplegallery.screen.main.BaseMainPresenter;
+import simple.gallery.den.simplegallery.screen.model.Page;
 import simple.gallery.den.simplegallery.screen.net.PhotoApi;
 
 
@@ -56,5 +57,9 @@ public class GridPresenter extends BaseMainPresenter<GridView> {
     @Override
     public void onStop() {
 
+    }
+
+    public void openDetails(Page page) {
+        getRouter().showDetails(page);
     }
 }

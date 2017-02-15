@@ -38,6 +38,7 @@ public class GridFragment extends BaseMainFragment implements GridView {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         photoRecyclerView.setLayoutManager(layoutManager);
         GridAdapter adapter = new GridAdapter(page.getPhotos(), getActivity());
+        adapter.setItemClickListener(view -> presenter.openDetails(page));
         photoRecyclerView.setAdapter(adapter);
     }
 
