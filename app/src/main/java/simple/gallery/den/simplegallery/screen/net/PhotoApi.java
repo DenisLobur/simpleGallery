@@ -8,6 +8,7 @@ import rx.Observable;
 public interface PhotoApi {
 
     @GET("v1/photos")
-    Observable<Object> getWeatherByCityname(@Query("feature") String feature,
-                                               @Query("consumer_key") String consumerKey);
+    Observable<Object> getPhotos(@Query("feature") String feature,
+                                 @Query("consumer_key") String consumerKey,
+                                 @Query("page") Integer pageNumber);
 }
