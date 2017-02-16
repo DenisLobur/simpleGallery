@@ -3,13 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <Button
-        android:id="@+id/check_request_btn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="fetch"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/photo_grid"
         android:layout_width="match_parent"

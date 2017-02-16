@@ -8,7 +8,7 @@ import simple.gallery.den.simplegallery.screen.model.Page;
 
 public interface GridView extends BaseMainView {
 
-    void fillGrid(List<Page> pages);
+    void fillGrid(Page page);
 
     void updateGrid();
 }

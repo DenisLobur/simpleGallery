@@ -3,7 +3,6 @@ package simple.gallery.den.simplegallery.screen.presentation.grid;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -31,35 +30,23 @@ public class GridPresenter extends BaseMainPresenter<GridView> {
         this.photoApi = photoApi;
     }
 
-    public void fetchPhotos(int i) {
-        photoApi.getPhotos("popular", Constants.CONSUMER_KEY, increment.incrementAndGet())
+    public void fetchPhotos() {
+        int i = increment.incrementAndGet();
+        photoApi.getPhotos("popular", Constants.CONSUMER_KEY, i)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(scheduler)
                 //.map(it -> Log.d("result", it.toString()))
                 .subscribe(pageResult -> {
                     Log.d("result", pageResult.toString());
-                    pages.add(pageResult);
-                    getView().fillGrid(pages);
-                    getView().updateGrid();
+                    getView().fillGrid(pageResult);
                 }, throwable -> {
                     Throwable th = throwable;
                 });
-
     }
 
     @Override
     public void onStart() {
-        photoApi.getPhotos("popular", Constants.CONSUMER_KEY, 1)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(scheduler)
-                //.map(it -> Log.d("result", it.toString()))
-                .subscribe(pageResult -> {
-                    Log.d("result", pageResult.toString());
-                    pages.add(pageResult);
-                    getView().fillGrid(pages);
-                }, throwable -> {
-                    Throwable th = throwable;
-                });
+        fetchPhotos();
     }
 
     @Override
