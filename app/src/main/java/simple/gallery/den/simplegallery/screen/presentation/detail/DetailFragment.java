@@ -2,6 +2,7 @@ package simple.gallery.den.simplegallery.screen.presentation.detail;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,12 +47,16 @@ public class DetailFragment extends BaseMainFragment implements DetailView {
         Photo photo = (Photo) getArguments().getSerializable(PHOTO_URL);
         if (photo != null) {
             Picasso.with(getActivity()).load(photo.getPhotoUrl()).into(fullImage);
-            title.setText(getString(R.string.title, photo.getName()));
-            author.setText(getString(R.string.author, photo.getUser().getUserName()));
-            camera.setText(getString(R.string.camera, photo.getCamera()));
+            title.setText(getString(R.string.title, checkEmptyName(photo.getName())));
+            author.setText(getString(R.string.author, checkEmptyName(photo.getUser().getUserName())));
+            camera.setText(getString(R.string.camera, checkEmptyName(photo.getCamera())));
         } else {
             Picasso.with(getActivity()).load(android.R.drawable.ic_menu_gallery).into(fullImage);
         }
+    }
+
+    private String checkEmptyName(String name) {
+        return TextUtils.isEmpty(name) ? getString(R.string.no_name) : name;
     }
 
     @Override

@@ -1,8 +1,9 @@
 package simple.gallery.den.simplegallery.screen.common;
 
 import simple.gallery.den.simplegallery.screen.model.Page;
+import simple.gallery.den.simplegallery.screen.model.Photo;
 
 public interface MainRouter {
 
-    void showDetails(Page page);
+    void showDetails(Photo photo);
 }

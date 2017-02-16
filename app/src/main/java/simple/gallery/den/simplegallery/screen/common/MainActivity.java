@@ -13,6 +13,7 @@ import simple.gallery.den.simplegallery.screen.inject.modules.NetworkModule;
 import simple.gallery.den.simplegallery.screen.inject.modules.RestApiModule;
 import simple.gallery.den.simplegallery.screen.main.BaseMainFragment;
 import simple.gallery.den.simplegallery.screen.model.Page;
+import simple.gallery.den.simplegallery.screen.model.Photo;
 import simple.gallery.den.simplegallery.screen.presentation.detail.DetailFragment;
 import simple.gallery.den.simplegallery.screen.presentation.grid.GridFragment;
 
@@ -51,8 +52,8 @@ public class MainActivity extends BaseActivity implements MainRouter {
     }
 
     @Override
-    public void showDetails(Page page) {
-        addBackStack(DetailFragment.newInstance(page.getPhotos().get(0)));
+    public void showDetails(Photo photo) {
+        addBackStack(DetailFragment.newInstance(photo));
     }
 
     public MainActivityComponent getMainActivityComponent() {

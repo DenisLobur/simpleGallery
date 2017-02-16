@@ -14,6 +14,7 @@ import simple.gallery.den.simplegallery.screen.common.BasePresenter;
 import simple.gallery.den.simplegallery.screen.common.Layout;
 import simple.gallery.den.simplegallery.screen.main.BaseMainFragment;
 import simple.gallery.den.simplegallery.screen.model.Page;
+import simple.gallery.den.simplegallery.screen.model.Photo;
 
 @Layout(id = R.layout.fragment_main)
 public class GridFragment extends BaseMainFragment implements GridView {
@@ -42,6 +43,7 @@ public class GridFragment extends BaseMainFragment implements GridView {
         photoRecyclerView.setLayoutManager(layoutManager);
         adapter = new GridAdapter(getActivity());
         adapter.setLoadMoreListener(() -> photoRecyclerView.post(() -> presenter.fetchPhotos()));
+        adapter.setOnItemClickListener(photoClickListener);
         photoRecyclerView.setAdapter(adapter);
     }
 
@@ -59,4 +61,11 @@ public class GridFragment extends BaseMainFragment implements GridView {
     protected void inject() {
         getMainActivityComponent().inject(this);
     }
+
+    GridAdapter.OnItemClickListener photoClickListener = new GridAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(Photo photo) {
+            presenter.openDetails(photo);
+        }
+    };
 }

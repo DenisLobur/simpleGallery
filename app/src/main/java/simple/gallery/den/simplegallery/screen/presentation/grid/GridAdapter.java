@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -30,11 +28,16 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Photo> photoList = new ArrayList<>();
     private List<Page> pageList = new ArrayList<>();
     private OnLoadMoreListener loadMoreListener;
+    private OnItemClickListener itemClickListener;
     private boolean isLoading;
 
     public GridAdapter(Context context) {
         this.context = context;
     }
+
+//    public void setItemClickListener(View.OnClickListener itemClickListener) {
+//        this.itemClickListener = itemClickListener;
+//    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -81,7 +84,9 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         PageHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            //view.setOnClickListener(itemClickListener);
+            view.setOnClickListener(v -> {
+                itemClickListener.onItemClick(photoList.get(getAdapterPosition()));
+            });
         }
 
         void bindData(Photo photo) {
@@ -102,12 +107,20 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         isLoading = false;
     }
 
-    interface OnLoadMoreListener {
+    public interface OnLoadMoreListener {
         void onLoadMore();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Photo photo);
     }
 
     public void setLoadMoreListener(OnLoadMoreListener loadMoreListener) {
         this.loadMoreListener = loadMoreListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     public void swapData(Page page) {

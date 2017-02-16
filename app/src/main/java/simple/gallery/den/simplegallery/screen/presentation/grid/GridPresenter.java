@@ -15,6 +15,7 @@ import rx.schedulers.Schedulers;
 import simple.gallery.den.simplegallery.screen.common.Constants;
 import simple.gallery.den.simplegallery.screen.main.BaseMainPresenter;
 import simple.gallery.den.simplegallery.screen.model.Page;
+import simple.gallery.den.simplegallery.screen.model.Photo;
 import simple.gallery.den.simplegallery.screen.net.PhotoApi;
 
 
@@ -54,7 +55,7 @@ public class GridPresenter extends BaseMainPresenter<GridView> {
 
     }
 
-    public void openDetails(Page page) {
-        getRouter().showDetails(page);
+    public void openDetails(Photo photo) {
+        getRouter().showDetails(photo);
     }
 }

@@ -3,5 +3,6 @@
     <string name="title">Title: %1$s</string>
     <string name="author">Author: %1$s</string>
     <string name="camera">Camera: %1$s</string>
+    <string name="no_name">No name</string>
 
 </resources>
