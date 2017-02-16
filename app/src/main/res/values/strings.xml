@@ -4,5 +4,7 @@
     <string name="author">Author: %1$s</string>
     <string name="camera">Camera: %1$s</string>
     <string name="no_name">No name</string>
+    <string name="share_photo">Share via…</string>
+    <string name="share_error">Could not share. Try again later</string>
 
 </resources>
