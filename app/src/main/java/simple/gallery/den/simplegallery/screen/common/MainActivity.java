@@ -12,7 +12,6 @@ import simple.gallery.den.simplegallery.screen.inject.modules.ContextModule;
 import simple.gallery.den.simplegallery.screen.inject.modules.NetworkModule;
 import simple.gallery.den.simplegallery.screen.inject.modules.RestApiModule;
 import simple.gallery.den.simplegallery.screen.main.BaseMainFragment;
-import simple.gallery.den.simplegallery.screen.model.Page;
 import simple.gallery.den.simplegallery.screen.model.Photo;
 import simple.gallery.den.simplegallery.screen.presentation.detail.DetailFragment;
 import simple.gallery.den.simplegallery.screen.presentation.grid.GridFragment;
@@ -25,7 +24,6 @@ public class MainActivity extends BaseActivity implements MainRouter {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setSupportActionBar(toolbar);
         mainActivityComponent =
                 DaggerMainActivityComponent
                         .builder()
@@ -44,11 +42,18 @@ public class MainActivity extends BaseActivity implements MainRouter {
     }
 
     private void addBackStack(BaseMainFragment fragment) {
-//        Preconditions.checkNotNull(fragment);
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.content, fragment);
         tx.addToBackStack(fragment.getFragmentName());
         tx.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            finish();
+        }
     }
 
     @Override
