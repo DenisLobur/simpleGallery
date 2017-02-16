@@ -10,21 +10,27 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import simple.gallery.den.simplegallery.R;
+import simple.gallery.den.simplegallery.screen.model.Page;
 import simple.gallery.den.simplegallery.screen.model.Photo;
 
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
-    private List<Photo> photoList;
+    private List<Photo> photoList = new ArrayList<>();
     private Context context;
     private View.OnClickListener itemClickListener;
 
-    public GridAdapter(List<Photo> photoList, Context context) {
-        this.photoList = photoList;
+    public GridAdapter(List<Page> pageList, Context context) {
         this.context = context;
+
+        for(Page page: pageList) {
+            photoList.addAll(page.getPhotos());
+        }
     }
 
     public void setItemClickListener(View.OnClickListener itemClickListener) {

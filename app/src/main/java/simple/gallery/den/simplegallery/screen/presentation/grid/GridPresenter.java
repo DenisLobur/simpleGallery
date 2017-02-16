@@ -2,7 +2,11 @@ package simple.gallery.den.simplegallery.screen.presentation.grid;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.inject.Inject;
 
@@ -17,28 +21,31 @@ import simple.gallery.den.simplegallery.screen.net.PhotoApi;
 
 public class GridPresenter extends BaseMainPresenter<GridView> {
 
-    private GridView gridView;
     private PhotoApi photoApi;
     private static Scheduler scheduler = Schedulers.from(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
+    private List<Page> pages = new ArrayList<>();
+    AtomicInteger increment = new AtomicInteger();
 
     @Inject
     public GridPresenter(PhotoApi photoApi) {
         this.photoApi = photoApi;
     }
 
-    /*public void fetchPhotos() {
-        photoApi.getPhotos("popular", Constants.CONSUMER_KEY, 1)
+    public void fetchPhotos(int i) {
+        photoApi.getPhotos("popular", Constants.CONSUMER_KEY, increment.incrementAndGet())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(scheduler)
                 //.map(it -> Log.d("result", it.toString()))
-                .subscribe(stringResult -> {
-                    Log.d("result", stringResult.toString());
-                    getView().fillGrid(stringResult);
+                .subscribe(pageResult -> {
+                    Log.d("result", pageResult.toString());
+                    pages.add(pageResult);
+                    getView().fillGrid(pages);
+                    getView().updateGrid();
                 }, throwable -> {
                     Throwable th = throwable;
                 });
 
-    }*/
+    }
 
     @Override
     public void onStart() {
@@ -46,9 +53,10 @@ public class GridPresenter extends BaseMainPresenter<GridView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(scheduler)
                 //.map(it -> Log.d("result", it.toString()))
-                .subscribe(stringResult -> {
-                    Log.d("result", stringResult.toString());
-                    getView().fillGrid(stringResult);
+                .subscribe(pageResult -> {
+                    Log.d("result", pageResult.toString());
+                    pages.add(pageResult);
+                    getView().fillGrid(pages);
                 }, throwable -> {
                     Throwable th = throwable;
                 });
