@@ -18,7 +18,11 @@ import simple.gallery.den.simplegallery.screen.model.Page;
 import simple.gallery.den.simplegallery.screen.model.Photo;
 import simple.gallery.den.simplegallery.screen.net.PhotoApi;
 
+import static simple.gallery.den.simplegallery.screen.common.Constants.FEATURE;
 
+/**
+ * Main presenter for downloading photos page-by-page
+ */
 public class GridPresenter extends BaseMainPresenter<GridView> {
 
     private PhotoApi photoApi;
@@ -33,7 +37,7 @@ public class GridPresenter extends BaseMainPresenter<GridView> {
 
     public void fetchPhotos() {
         int i = increment.incrementAndGet();
-        photoApi.getPhotos("popular", Constants.CONSUMER_KEY, i)
+        photoApi.getPhotos(FEATURE, Constants.CONSUMER_KEY, i)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(scheduler)
                 //.map(it -> Log.d("result", it.toString()))

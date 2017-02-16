@@ -16,6 +16,10 @@ import simple.gallery.den.simplegallery.screen.main.BaseMainFragment;
 import simple.gallery.den.simplegallery.screen.model.Page;
 import simple.gallery.den.simplegallery.screen.model.Photo;
 
+/**
+ * Main fragment for showing grid photos
+ */
+
 @Layout(id = R.layout.fragment_main)
 public class GridFragment extends BaseMainFragment implements GridView {
 

@@ -13,6 +13,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+/**
+ * Base fragment for resolving fragment layouts and operating over presenter lifecycle
+ */
+
 public abstract class BaseFragment extends Fragment {
     private static final AtomicInteger lastFragmentId = new AtomicInteger(0);
     private final int fragmentId;

@@ -19,6 +19,9 @@ import javax.inject.Inject;
 import simple.gallery.den.simplegallery.R;
 import simple.gallery.den.simplegallery.screen.main.BaseMainPresenter;
 
+/**
+ *  Presenter for detailed photo and sharing this photo
+ */
 
 public class DetailPresenter extends BaseMainPresenter<DetailView> {
 

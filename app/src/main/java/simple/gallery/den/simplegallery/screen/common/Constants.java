@@ -7,4 +7,5 @@ package simple.gallery.den.simplegallery.screen.common;
 public class Constants {
     public static final String CONSUMER_KEY = "wB4ozJxTijCwNuggJvPGtBGCRqaZVcF6jsrzUadF";
     public static final String PHOTO_URL = "photo_url";
+    public static final String FEATURE = "popular";
 }

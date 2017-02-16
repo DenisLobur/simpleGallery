@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+/**
+ * Photo model which has all necessary photo attributes
+ */
+
 public class Photo implements Serializable {
     @SerializedName("name")
     @Expose

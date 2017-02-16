@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Page model which is being withdrawn from the server. It contains photo list (20 photos  per page)
+ */
+
 public class Page {
     @SerializedName("current_page")
     @Expose

@@ -22,6 +22,10 @@ import simple.gallery.den.simplegallery.screen.model.Photo;
 
 import static simple.gallery.den.simplegallery.screen.common.Constants.PHOTO_URL;
 
+/**
+ * Detail fragment for showing single photo
+ */
+
 @Layout(id = R.layout.fragment_details)
 public class DetailFragment extends BaseMainFragment implements DetailView {
 
