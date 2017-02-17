@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +19,7 @@ import simple.gallery.den.simplegallery.R;
 import simple.gallery.den.simplegallery.screen.main.BaseMainPresenter;
 
 /**
- *  Presenter for detailed photo and sharing this photo
+ * Presenter for detailed photo and sharing this photo
  */
 
 public class DetailPresenter extends BaseMainPresenter<DetailView> {
@@ -35,7 +34,7 @@ public class DetailPresenter extends BaseMainPresenter<DetailView> {
 
     @Override
     public void onStart() {
-        getView().showPhoto();
+        //getView().showPhoto();
     }
 
     @Override
@@ -52,7 +51,7 @@ public class DetailPresenter extends BaseMainPresenter<DetailView> {
             shareIntent.setType("image/*");
             context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_photo)));
         } else {
-            Toast.makeText(context, context.getString(R.string.share_error), Toast.LENGTH_SHORT).show();
+            getView().showError(R.string.share_error);
         }
     }
 
