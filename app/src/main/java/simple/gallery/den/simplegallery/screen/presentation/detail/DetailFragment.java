@@ -1,8 +1,12 @@
 package simple.gallery.den.simplegallery.screen.presentation.detail;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -76,7 +80,30 @@ public class DetailFragment extends BaseMainFragment implements DetailView {
 
     @OnClick(R.id.share_btn)
     public void onShareClick(View v) {
-        presenter.sharePhoto(fullImage);
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermission();
+        } else {
+            presenter.sharePhoto(fullImage);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            if (getActivity() == null) {
+                return;
+            }
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                showError(R.string.share_error_permission);
+            }
+        } else {
+            presenter.sharePhoto(fullImage);
+        }
+    }
+
+    private void requestPermission() {
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
     }
 
     @NonNull
